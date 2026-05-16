@@ -292,7 +292,8 @@ export default async function AdminPage({
               {params.error === "config" ? (
                 <div className="mt-6 rounded-2xl border border-[#d91f4c]/20 bg-[#d91f4c]/10 px-5 py-4 text-sm font-bold text-[#9f1436]">
                   Admin login is not configured on this deployment. Add the
-                  TSL admin environment variables and redeploy.
+                  TSL_ADMIN_EMAIL and TSL_ADMIN_PASSWORD environment variables
+                  and redeploy.
                 </div>
               ) : null}
 

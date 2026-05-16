@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { createHmac, scryptSync, timingSafeEqual } from "node:crypto";
+import { createHmac, timingSafeEqual } from "node:crypto";
 
 const SESSION_COOKIE = "tsl_admin_session";
 const SESSION_MAX_AGE_SECONDS = 60 * 60 * 8;
@@ -10,11 +10,7 @@ export type AdminSession = {
 };
 
 export function isAdminAuthConfigured() {
-  return Boolean(
-    process.env.TSL_ADMIN_EMAIL &&
-      process.env.TSL_ADMIN_PASSWORD_HASH &&
-      process.env.TSL_ADMIN_SESSION_SECRET,
-  );
+  return Boolean(process.env.TSL_ADMIN_EMAIL && process.env.TSL_ADMIN_PASSWORD);
 }
 
 function requiredEnv(name: string) {
@@ -32,7 +28,7 @@ function adminEmail() {
 }
 
 function sessionSecret() {
-  return requiredEnv("TSL_ADMIN_SESSION_SECRET");
+  return process.env.TSL_ADMIN_SESSION_SECRET ?? requiredEnv("TSL_ADMIN_PASSWORD");
 }
 
 function safeEqual(left: string, right: string) {
@@ -78,18 +74,10 @@ export function verifyAdminCredentials(email: string, password: string) {
     return false;
   }
 
-  const [scheme, salt, expectedHash] = requiredEnv(
-    "TSL_ADMIN_PASSWORD_HASH",
-  ).split(":");
-
-  if (scheme !== "scrypt" || !salt || !expectedHash) {
-    throw new Error("Invalid TSL_ADMIN_PASSWORD_HASH format");
-  }
-
   const emailMatches = email.trim().toLowerCase() === adminEmail();
-  const actualHash = scryptSync(password.trim(), salt, 64).toString("hex");
+  const expectedPassword = requiredEnv("TSL_ADMIN_PASSWORD");
 
-  return emailMatches && safeEqual(actualHash, expectedHash);
+  return emailMatches && safeEqual(password.trim(), expectedPassword);
 }
 
 export async function createAdminSession(email: string) {

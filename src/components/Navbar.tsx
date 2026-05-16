@@ -18,22 +18,22 @@ export default function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[#eadfec] bg-white text-[#37003c] shadow-[0_4px_22px_rgba(55,0,60,0.06)]">
-      <nav className="mx-auto flex h-[72px] max-w-[1440px] items-center gap-3 px-4 lg:h-[92px] lg:gap-5 lg:px-5">
+      <nav className="mx-auto flex h-[68px] max-w-[1440px] items-center gap-2 px-3 sm:px-4 lg:h-[92px] lg:gap-5 lg:px-5">
         <Link
           href="/"
-          className="flex shrink-0 items-center gap-3 rounded-[20px] px-2 py-2 transition-all duration-300 ease-out hover:bg-[#f0e8f2] active:scale-[0.97] lg:rounded-[24px] lg:px-4 lg:py-3"
+          className="flex min-w-0 shrink items-center gap-2 rounded-[18px] px-2 py-2 transition-all duration-300 hover:bg-[#f0e8f2] active:scale-[0.97] lg:gap-3 lg:rounded-[24px] lg:px-4 lg:py-3"
         >
           <Image
             src="/images/league-logo.png"
             alt="TPS Stars League logo"
-            width={58}
-            height={58}
-            className="h-12 w-12 object-contain lg:h-[58px] lg:w-[58px]"
+            width={52}
+            height={52}
+            className="h-10 w-10 shrink-0 object-contain sm:h-11 sm:w-11 lg:h-[58px] lg:w-[58px]"
             priority
           />
 
-          <div>
-            <div className="text-[16px] font-black tracking-tight text-[#37003c] sm:text-[17px] lg:text-[21px]">
+          <div className="min-w-0">
+            <div className="truncate text-[15px] font-black tracking-tight text-[#37003c] sm:text-[17px] lg:text-[21px]">
               TPS Stars League
             </div>
 
@@ -68,7 +68,7 @@ export default function Navbar() {
           })}
         </div>
 
-        <div className="ml-auto flex shrink-0 items-center gap-3 pr-2">
+        <div className="ml-auto flex shrink-0 items-center gap-2 lg:gap-3 lg:pr-2">
           <button
             type="button"
             className={[
@@ -76,7 +76,6 @@ export default function Navbar() {
               "bg-[#f0e8f2] text-[#37003c]",
               "transition-all duration-300 ease-out",
               "hover:-translate-y-0.5 hover:bg-[#e7d8eb]",
-              "hover:shadow-[0_10px_24px_rgba(55,0,60,0.10)]",
               "active:translate-y-0 active:scale-95",
               "lg:flex",
             ].join(" ")}
@@ -93,7 +92,6 @@ export default function Navbar() {
                 stroke="currentColor"
                 strokeWidth="2.2"
               />
-
               <path
                 d="M16.2 16.2 21 21"
                 stroke="currentColor"
@@ -106,14 +104,13 @@ export default function Navbar() {
           <Link
             href="/admin"
             className={[
-              "group relative inline-flex h-10 min-w-[88px] shrink-0 lg:h-12 lg:min-w-[126px]",
+              "group relative inline-flex h-10 min-w-[82px] shrink-0 lg:h-12 lg:min-w-[126px]",
               "items-center justify-center overflow-hidden rounded-full",
               "bg-[#37003c] px-4 lg:px-7",
               "text-[13px] font-black text-white lg:text-[15px]",
               "shadow-[0_14px_32px_rgba(55,0,60,0.24)]",
-              "transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]",
+              "transition-all duration-300",
               "hover:-translate-y-0.5 hover:bg-[#4b0052]",
-              "hover:shadow-[0_18px_42px_rgba(55,0,60,0.32)]",
               "active:translate-y-0 active:scale-95",
             ].join(" ")}
           >
@@ -127,7 +124,7 @@ export default function Navbar() {
       </nav>
 
       <div className="border-t border-[#eadfec] bg-white lg:hidden">
-        <div className="flex gap-2 overflow-x-auto px-4 py-2 [-webkit-overflow-scrolling:touch]">
+        <div className="flex gap-2 overflow-x-auto px-3 py-2 [-webkit-overflow-scrolling:touch] sm:px-4">
           {navLinks.map((link) => {
             const active = pathname === link.href;
 
@@ -136,7 +133,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={[
-                  "shrink-0 rounded-full px-4 py-2.5 text-[14px] font-black",
+                  "shrink-0 rounded-full px-4 py-2.5 text-[13px] font-black sm:text-[14px]",
                   "transition-all duration-300 ease-out",
                   "active:scale-95",
                   active

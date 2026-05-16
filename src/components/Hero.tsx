@@ -15,15 +15,15 @@ type HeroProps = {
 export default function Hero({ eyebrow, title }: HeroProps = {}) {
   if (eyebrow || title) {
     return (
-      <section className="relative overflow-hidden border-b border-[#eadfec] bg-white pt-[126px] text-[#37003c] lg:pt-[92px]">
+      <section className="relative overflow-hidden border-b border-[#eadfec] bg-white pt-[116px] text-[#37003c] lg:pt-[92px]">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(55,0,60,0.08),transparent_42%)]" />
 
-        <div className="relative mx-auto flex min-h-[330px] max-w-[1440px] flex-col justify-center px-6 py-16">
-          <p className="mb-5 text-[14px] font-black uppercase tracking-[0.24em] text-[#6b1570]">
+        <div className="relative mx-auto flex min-h-[240px] max-w-[1440px] flex-col justify-center px-4 py-12 sm:px-6 sm:py-16 lg:min-h-[330px]">
+          <p className="mb-4 text-[12px] font-black uppercase tracking-[0.22em] text-[#6b1570] sm:text-[14px]">
             {eyebrow}
           </p>
 
-          <h1 className="text-[72px] font-black uppercase leading-[0.9] tracking-[-0.055em] text-[#37003c] sm:text-[96px]">
+          <h1 className="text-[48px] font-black uppercase leading-[0.92] tracking-[-0.055em] text-[#37003c] sm:text-[72px] lg:text-[96px]">
             {title}
           </h1>
         </div>
@@ -32,33 +32,33 @@ export default function Hero({ eyebrow, title }: HeroProps = {}) {
   }
 
   return (
-    <section className="relative overflow-hidden border-b border-[#eadfec] bg-white pt-[126px] text-[#37003c] lg:pt-[92px]">
+    <section className="relative overflow-hidden border-b border-[#eadfec] bg-white pt-[116px] text-[#37003c] lg:pt-[92px]">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_45%,rgba(55,0,60,0.07),transparent_36%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(55,0,60,0.025)_1px,transparent_1px),linear-gradient(rgba(55,0,60,0.025)_1px,transparent_1px)] bg-[size:76px_76px]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(55,0,60,0.025)_1px,transparent_1px),linear-gradient(rgba(55,0,60,0.025)_1px,transparent_1px)] bg-[size:54px_54px] lg:bg-[size:76px_76px]" />
 
-      <div className="relative mx-auto grid min-h-[600px] max-w-[1440px] items-center gap-10 px-6 py-14 lg:grid-cols-[1fr_380px] lg:py-16">
+      <div className="relative mx-auto grid min-h-[560px] max-w-[1440px] items-center gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[1fr_380px] lg:py-16">
         <div className="relative z-10 animate-hero-text">
-          <div className="mb-7 inline-flex items-center rounded-full border border-[#e5d5e8] bg-[#fbf8fc] px-6 py-3 text-sm font-black uppercase tracking-[0.24em] text-[#6b1570] shadow-sm">
+          <div className="mb-6 inline-flex items-center rounded-full border border-[#e5d5e8] bg-[#fbf8fc] px-4 py-2.5 text-[11px] font-black uppercase tracking-[0.22em] text-[#6b1570] shadow-sm sm:px-6 sm:py-3 sm:text-sm">
             Season 2026 · Live Now
           </div>
 
-          <h1 className="max-w-4xl text-[64px] font-black leading-[0.9] tracking-[-0.065em] text-[#37003c] sm:text-[92px] lg:text-[116px]">
+          <h1 className="max-w-4xl text-[56px] font-black leading-[0.88] tracking-[-0.07em] text-[#37003c] sm:text-[82px] md:text-[96px] lg:text-[116px]">
             TPS Stars
             <br />
             League
           </h1>
 
-          <p className="mt-7 max-w-2xl text-xl font-medium leading-8 text-[#75657d]">
+          <p className="mt-6 max-w-2xl text-[17px] font-medium leading-7 text-[#75657d] sm:text-xl sm:leading-8">
             The premier competitive league for TPS Ultimate Soccer. Follow
             clubs, fixtures, standings, results, and the latest league news.
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:gap-4 lg:mt-10">
             {quickLinks.map((item, index) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="inline-flex items-center justify-center rounded-full bg-[#37003c] px-8 py-4 text-base font-black text-white shadow-[0_14px_35px_rgba(55,0,60,0.18)] transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-[#5a0a5f] hover:shadow-[0_20px_45px_rgba(55,0,60,0.25)] active:scale-95"
+                className="inline-flex h-13 items-center justify-center rounded-full bg-[#37003c] px-5 py-4 text-sm font-black text-white shadow-[0_14px_35px_rgba(55,0,60,0.18)] transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-[#5a0a5f] hover:shadow-[0_20px_45px_rgba(55,0,60,0.25)] active:scale-95 sm:px-8 sm:text-base"
                 style={{
                   animation: `heroTextIn 0.75s cubic-bezier(0.22,1,0.36,1) ${
                     0.12 + index * 0.08

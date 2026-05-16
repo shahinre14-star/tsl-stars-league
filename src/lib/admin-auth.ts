@@ -9,6 +9,14 @@ export type AdminSession = {
   expiresAt: number;
 };
 
+export function isAdminAuthConfigured() {
+  return Boolean(
+    process.env.TSL_ADMIN_EMAIL &&
+      process.env.TSL_ADMIN_PASSWORD_HASH &&
+      process.env.TSL_ADMIN_SESSION_SECRET,
+  );
+}
+
 function requiredEnv(name: string) {
   const value = process.env[name];
 
@@ -66,6 +74,10 @@ export function getAdminSessionCookieName() {
 }
 
 export function verifyAdminCredentials(email: string, password: string) {
+  if (!isAdminAuthConfigured()) {
+    return false;
+  }
+
   const [scheme, salt, expectedHash] = requiredEnv(
     "TSL_ADMIN_PASSWORD_HASH",
   ).split(":");
@@ -97,6 +109,10 @@ export async function clearAdminSession() {
 }
 
 export async function getAdminSession(): Promise<AdminSession | null> {
+  if (!isAdminAuthConfigured()) {
+    return null;
+  }
+
   const cookieStore = await cookies();
   const token = cookieStore.get(SESSION_COOKIE)?.value;
 

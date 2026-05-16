@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "admin:env": "node scripts/generate-admin-env.mjs"
   },
   "dependencies": {
     "next": "16.2.6",

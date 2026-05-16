@@ -2,6 +2,7 @@ import {
   createAdminSessionToken,
   getAdminSessionCookieName,
   getAdminSessionCookieOptions,
+  isAdminAuthConfigured,
   verifyAdminCredentials,
 } from "@/lib/admin-auth";
 import { NextRequest, NextResponse } from "next/server";
@@ -13,7 +14,22 @@ export async function POST(request: NextRequest) {
   const email = String(formData.get("email") ?? "");
   const password = String(formData.get("password") ?? "");
 
-  if (!verifyAdminCredentials(email, password)) {
+  if (!isAdminAuthConfigured()) {
+    return NextResponse.redirect(new URL("/admin?error=config", request.url), {
+      status: 303,
+    });
+  }
+
+  try {
+    if (!verifyAdminCredentials(email, password)) {
+      return NextResponse.redirect(
+        new URL("/admin?error=invalid", request.url),
+        {
+          status: 303,
+        },
+      );
+    }
+  } catch {
     return NextResponse.redirect(new URL("/admin?error=invalid", request.url), {
       status: 303,
     });
